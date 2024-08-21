@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Pastebin</title>
+</head>
+<body>
+  <h1>Simple Pastebin</h1>
+  <textarea id="content" rows="10" cols="50" placeholder="Enter your text here..."></textarea><br>
+  <button onclick="savePaste()">Save</button>
+
+  <script>
+    async function savePaste() {
+      const content = document.getElementById('content').value;
+      const response = await fetch('/save/pastebinapi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content })
+      });
+      const result = await response.json();
+      alert(`Pastebin saved! Access it at ${result.url}`);
+    }
+  </script>
+</body>
+</html>

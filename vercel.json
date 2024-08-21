@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/*.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/save/pastebinapi", "dest": "/api/save.js" },
+    { "src": "/raw/(.*)", "dest": "/api/raw.js?id=$1" }
+  ]
+}
